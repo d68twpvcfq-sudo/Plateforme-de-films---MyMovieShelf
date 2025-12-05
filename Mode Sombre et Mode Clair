@@ -1,5 +1,5 @@
-/* === RESET & BASE === */
-* {
+# RESET & BASE 
+{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -17,7 +17,7 @@ body {
   margin: 0 auto;
 }
 
-/* === VARIABLES DE THÈME === */
+#VARIABLES DE THÈME 
 :root {
   /* Couleurs mode clair */
   --bg-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -34,7 +34,7 @@ body {
 }
 
 body.dark-mode {
-  /* Couleurs mode sombre */
+ #Couleurs mode sombre
   --bg-primary: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
   --bg-secondary: #1e1e1e;
   --text-primary: #f0f0f0;
@@ -48,13 +48,13 @@ body.dark-mode {
   --footer-border: rgba(255, 255, 255, 0.1);
 }
 
-/* === APPLICATION DES VARIABLES === */
+# APPLICATION DES VARIABLES
 body {
   background: var(--bg-primary);
   color: var(--text-primary);
 }
 
-/* === HEADER & TITRE === */
+# HEADER & TITRE
 h1 {
   text-align: center;
   color: var(--text-light);
@@ -63,7 +63,7 @@ h1 {
   text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
-/* === BOUTON THÈME === */
+# BOUTON THÈME
 .theme-toggle-container {
   text-align: center;
   margin-bottom: 20px;
@@ -102,7 +102,7 @@ body.dark-mode .theme-toggle:hover {
   font-size: 1.2em;
 }
 
-/* === RECHERCHE === */
+ # RECHERCHE
 .search-bar {
   text-align: center;
   margin-bottom: 30px;
@@ -124,7 +124,7 @@ body.dark-mode .theme-toggle:hover {
   color: var(--text-secondary);
 }
 
-/* === FILTRES === */
+# FILTRES
 .filter-buttons {
   text-align: center;
   margin-bottom: 30px;
