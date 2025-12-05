@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détail du Film - MyMovieShelf</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>🎬 MyMovieShelf</h1>
+        <a href="index.html" class="btn-retour">← Retour à la liste</a>
+    </header>
+
+    <main>
+        <section class="film-detail">
+            <div class="detail-container">
+                <div class="detail-poster">
+                    <img id="poster" src="" alt="Affiche du film">
+                </div>
+                
+                <div class="detail-info">
+                    <h2 id="titre">Titre du Film</h2>
+                    <div class="meta-info">
+                        <span id="annee" class="badge">Année</span>
+                        <span id="duree" class="badge">Durée</span>
+                        <span id="note" class="badge note">Note</span>
+                    </div>
+                    
+                    <p class="genre" id="genre">Genre</p>
+                    
+                    <div class="synopsis">
+                        <h3>Synopsis</h3>
+                        <p id="synopsis">Description du film...</p>
+                    </div>
+                    
+                    <div class="realisateur">
+                        <h3>Réalisateur</h3>
+                        <p id="realisateur">Nom du réalisateur</p>
+                    </div>
+                    
+                    <div class="acteurs">
+                        <h3>Acteurs principaux</h3>
+                        <p id="acteurs">Liste des acteurs</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 MyMovieShelf - Tous droits réservés</p>
+    </footer>
+
+    <script>
+        // Récupérer l'ID du film depuis l'URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const filmId = urlParams.get('id') || '1';
+
+        // Base de données simple des films
+        const films = {
+            '1': {
+                titre: 'Inception',
+                annee: '2010',
+                duree: '148 min',
+                note: '8.8/10',
+                genre: 'Science-Fiction, Thriller',
+                synopsis: 'Dom Cobb est un voleur expérimenté dans l\'art dangereux de l\'extraction : sa spécialité consiste à s\'infiltrer dans les rêves des gens pour voler les secrets les plus précieux de leur subconscient. Cette compétence rare lui a valu d\'être un joueur convoité dans le monde de l\'espionnage industriel, mais l\'a également rendu fugitif international et lui a coûté tout ce qu\'il a jamais aimé.',
+                realisateur: 'Christopher Nolan',
+                acteurs: 'Leonardo DiCaprio, Marion Cotillard, Tom Hardy, Ellen Page',
+                poster: 'https://via.placeholder.com/400x600?text=Inception'
+            },
+            '2': {
+                titre: 'The Matrix',
+                annee: '1999',
+                duree: '136 min',
+                note: '8.7/10',
+                genre: 'Science-Fiction, Action',
+                synopsis: 'Thomas Anderson est un programmeur informatique qui mène une double vie. La nuit, il est un pirate informatique connu sous le nom de Neo. Un jour, il rencontre Morpheus, un légendaire pirate informatique qui lui révèle la vérité sur la réalité : le monde dans lequel il vit n\'est qu\'une simulation appelée la Matrice.',
+                realisateur: 'Lana et Lilly Wachowski',
+                acteurs: 'Keanu Reeves, Laurence Fishburne, Carrie-Anne Moss, Hugo Weaving',
+                poster: 'https://via.placeholder.com/400x600?text=The+Matrix'
+            },
+            '3': {
+                titre: 'Pulp Fiction',
+                annee: '1994',
+                duree: '154 min',
+                note: '8.9/10',
+                genre: 'Crime, Drame',
+                synopsis: 'L\'histoire de plusieurs personnages de la pègre de Los Angeles, entrelacée de manière non linéaire. Le film suit les vies de deux tueurs à gages, un boxeur, un gangster et sa femme, et un couple de braqueurs de restaurants.',
+                realisateur: 'Quentin Tarantino',
+                acteurs: 'John Travolta, Samuel L. Jackson, Uma Thurman, Bruce Willis',
+                poster: 'https://via.placeholder.com/400x600?text=Pulp+Fiction'
+            },
+            '4': {
+                titre: 'The Dark Knight',
+                annee: '2008',
+                duree: '152 min',
+                note: '9.0/10',
+                genre: 'Action, Crime',
+                synopsis: 'Batman doit accepter l\'un des plus grands défis psychologiques et physiques de sa capacité à combattre l\'injustice. Avec l\'aide du lieutenant Jim Gordon et du nouveau procureur de district Harvey Dent, Batman se lance dans une nouvelle campagne pour éliminer le crime organisé à Gotham.',
+                realisateur: 'Christopher Nolan',
+                acteurs: 'Christian Bale, Heath Ledger, Aaron Eckhart, Gary Oldman',
+                poster: 'https://via.placeholder.com/400x600?text=The+Dark+Knight'
+            },
+            '5': {
+                titre: 'Interstellar',
+                annee: '2014',
+                duree: '169 min',
+                note: '8.6/10',
+                genre: 'Science-Fiction, Drame',
+                synopsis: 'Dans un futur proche, la Terre est devenue inhospitalière. Un groupe d\'explorateurs voyage à travers un trou de ver dans l\'espace pour trouver une nouvelle planète habitable pour l\'humanité.',
+                realisateur: 'Christopher Nolan',
+                acteurs: 'Matthew McConaughey, Anne Hathaway, Jessica Chastain, Michael Caine',
+                poster: 'https://via.placeholder.com/400x600?text=Interstellar'
+            },
+            '6': {
+                titre: 'Forrest Gump',
+                annee: '1994',
+                duree: '142 min',
+                note: '8.8/10',
+                genre: 'Drame, Romance',
+                synopsis: 'L\'histoire de la vie de Forrest Gump, un homme simple d\'esprit mais au grand cœur, qui traverse plusieurs décennies de l\'histoire américaine, rencontrant des personnages historiques et influençant des événements culturels.',
+                realisateur: 'Robert Zemeckis',
+                acteurs: 'Tom Hanks, Robin Wright, Gary Sinise, Sally Field',
+                poster: 'https://via.placeholder.com/400x600?text=Forrest+Gump'
+            }
+        };
+
+        // Afficher les détails du film
+        const film = films[filmId];
+        if (film) {
+            document.getElementById('titre').textContent = film.titre;
+            document.getElementById('annee').textContent = film.annee;
+            document.getElementById('duree').textContent = film.duree;
+            document.getElementById('note').textContent = film.note;
+            document.getElementById('genre').textContent = film.genre;
+            document.getElementById('synopsis').textContent = film.synopsis;
+            document.getElementById('realisateur').textContent = film.realisateur;
+            document.getElementById('acteurs').textContent = film.acteurs;
+            document.getElementById('poster').src = film.poster;
+            document.getElementById('poster').alt = film.titre;
+            document.title = film.titre + ' - MyMovieShelf';
+        }
+    </script>
+</body>
+</html>
+
