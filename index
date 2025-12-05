@@ -579,23 +579,51 @@
     const modalClose = document.getElementById('modalClose');
 
     function showDetails(film) {
-      modalPoster.src = film.image || '';
-      modalTitle.textContent = film.titre;
-      modalMeta.textContent = `${film.année} • Note: ${film.note}`;
-      modalGenre.textContent = film.genre;
-      modalDirector.textContent = `Réalisateur: ${film.réalisateur}`;
-      modalDescription.textContent = film.description;
-      modal.classList.add('open');
-      modal.setAttribute('aria-hidden','false');
-    }
+  modalPoster.src = film.image;
+  modalTitle.textContent = film.titre;
+  modalMeta.textContent = film.année + " • Note : " + film.note;
+  modalGenre.textContent = film.genre;
+  modalDirector.textContent = "Réalisateur : " + film.réalisateur;
+  modalDescription.textContent = film.description;
 
-    function closeModal() {
-      modal.classList.remove('open');
-      modal.setAttribute('aria-hidden','true');
-    }
+  modal.classList.add("open");
+  modal.setAttribute("aria-hidden", "false");
+}
 
-    modalClose.addEventListener('click', closeModal);
-    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+// Fermer la modal
+modalClose.addEventListener("click", () => {
+  modal.classList.remove("open");
+  modal.setAttribute("aria-hidden", "true");
+});
+
+// Fermer en cliquant en dehors de la carte
+modal.addEventListener("click", (e) => {
+  if (e.target === modal) {
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
+  }
+});
+
+
+// --- Mode sombre ---
+const toggleTheme = document.getElementById("toggleTheme");
+
+toggleTheme.addEventListener("click", () => {
+  document.body.classList.toggle("dark-mode");
+
+  // Optionnel : sauvegarder le thème
+  if (document.body.classList.contains("dark-mode")) {
+    localStorage.setItem("theme", "dark");
+  } else {
+    localStorage.setItem("theme", "light");
+  }
+});
+
+// Restaurer le thème sauvegardé
+if (localStorage.getItem("theme") === "dark") {
+  document.body.classList.add("dark-mode");
+}
+
   </script>
 
  
